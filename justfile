@@ -1,0 +1,2 @@
+services:
+  nix run .#state

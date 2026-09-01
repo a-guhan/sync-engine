@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xyne-sync</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="column left">
+        <section class="panel">
+          <h2>Subscribed query</h2>
+          <form id="base-form" class="stack">
+            <textarea id="base-sql" name="sql" placeholder="select * from public.user_table limit 10" required></textarea>
+            <button type="submit">Subscribe</button>
+          </form>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Queries</h2>
+            <button id="add-query" type="button">Add</button>
+          </div>
+          <div id="exec-list" class="stack"></div>
+        </section>
+      </section>
+      <section class="column center">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Result</h2>
+            <div id="base-snapshot" class="meta"></div>
+          </div>
+          <div id="base-sql-view" class="sql"></div>
+          <div id="result-view" class="box table-wrap"></div>
+        </section>
+        <section class="panel grow">
+          <h2>Subscription changes</h2>
+          <div id="changes-view" class="box log"></div>
+        </section>
+      </section>
+      <section class="column right">
+        <section class="panel">
+          <h2>Raw WAL</h2>
+          <div id="raw-wal-view" class="box log"></div>
+        </section>
+        <section class="panel grow">
+          <h2>Logical WAL</h2>
+          <div id="logical-wal-view" class="box log"></div>
+        </section>
+      </section>
+    </main>
+    <template id="exec-query-template">
+      <article class="exec-query">
+        <textarea class="exec-sql" placeholder="BEGIN; INSERT ...; COMMIT;"></textarea>
+        <div class="actions">
+          <button class="run-query" type="button">Run</button>
+          <button class="delete-query" type="button">Delete</button>
+        </div>
+        <pre class="exec-output"></pre>
+      </article>
+    </template>
+    <script src="/app.js"></script>
+  </body>
+</html>
