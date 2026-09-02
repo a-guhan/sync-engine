@@ -1,4 +1,0 @@
-comment = 'Expose current snapshot text, using subxip in recovery'
-default_version = '1.0'
-module_pathname = '$libdir/pg_subxip_snapshot'
-relocatable = true

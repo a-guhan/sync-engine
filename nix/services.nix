@@ -4,10 +4,7 @@
   perSystem = { pkgs, ... }: {
     process-compose."state" = { config, pkgs, ... }:
       let
-        postgresWithPgSubxipSnapshot =
-          pkgs.postgresql.withPackages (ps: [
-            (ps.callPackage ./pg_subxip_snapshot.nix { })
-          ]);
+        postgres17Sync = pkgs.callPackage ./postgresql_17_sync.nix { };
       in
       {
       imports = [
@@ -16,7 +13,7 @@
 
       services.postgres.primary = {
         enable = true;
-        package = postgresWithPgSubxipSnapshot;
+        package = postgres17Sync;
         port = 5433;
         listen_addresses = "0.0.0.0";
         settings = {
@@ -44,7 +41,7 @@
         initialScript.after = ''
           ALTER ROLE jus_sync_user WITH REPLICATION;
           \connect jus_sync
-          CREATE EXTENSION IF NOT EXISTS pg_subxip_snapshot;
+          CREATE EXTENSION IF NOT EXISTS pg_current_snapshot_full;
           ALTER TABLE IF EXISTS public.user_table REPLICA IDENTITY FULL;
           SELECT 'CREATE PUBLICATION jus_sync_pub FOR TABLE public.user_table'
           WHERE NOT EXISTS (

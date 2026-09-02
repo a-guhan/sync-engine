@@ -15,7 +15,7 @@
       ];
       systems = import inputs.systems;
       perSystem = { pkgs, ... }: {
-        packages.pg_subxip_snapshot = pkgs.callPackage ./nix/pg_subxip_snapshot.nix { };
+        packages.postgresql_17_sync = pkgs.callPackage ./nix/postgresql_17_sync.nix { };
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
