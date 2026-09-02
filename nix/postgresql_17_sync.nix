@@ -11,7 +11,7 @@
   src = fetchFromGitHub {
     owner = "a-guhan";
     repo = "postgres";
-    rev = "4fd492333b38bf97755106ada41c1ef828bbf03b";
-    sha256 = "09hrjbkjnll6g5f1gmx145mzlhdx9l81h5wb9q442n3s6bhdlfwb";
+    rev = "aa63add21735305af99a0a55999c1d076d035e3b";
+    sha256 = "0s64lppqajcc8p946kqky6d4zylygmnjcx5yxhc5wzd2yadpw0kv";
   };
 })
